@@ -1,0 +1,15 @@
+Package: BuildinganRPackageLCP
+Type: Package
+Title: Five functions to process and analyze data from the Fatality Analysis Reporting System
+Version: 0.1.0
+License: GPL-2
+Depends: R (>= 3.0.0)
+Author: Lorenzo Carretero
+Maintainer: Lorenzo Carretero <lcpaulet@gmail.com>
+Description: The R package BuildinganRPackage implements five useful functions to process and analyze data from the Fatality Analysis Reporting System, FARS. fars_read, a read data file function. make_filename, a simple function to create the filename of accident data for a given year. fars_read_years, a function to extraxct monthly data from a given set of years. fars_summarize_years, a function to summarize FARS events per month and year. fars_map_state, a function to create a map of FARS events and points plota for a given a state number and year.
+Encoding: UTF-8
+LazyData: true
+Imports: readr, dplyr, tidyr, graphics, maps, magrittr
+RoxygenNote: 6.0.1
+Suggests: knitr, rmarkdown, testthat
+VignetteBuilder: knitr
