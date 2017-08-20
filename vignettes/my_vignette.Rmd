@@ -28,15 +28,15 @@ library(maps)
 The package includes the FARS dataset files from years 2013 to 2015. To access the raw data files the user can use the following line of code:
 
 ```{r setup_2, eval=FALSE}
-system.file("extdata", "accident_2013.csv.bz2", package = "BuilidinganRPackageLCP")
-system.file("extdata", "accident_2014.csv.bz2", package = "BuilidinganRPackageLCP")
-system.file("extdata", "accident_2015.csv.bz2", package = "BuilidinganRPackageLCP")
+system.file("extdata", "accident_2013.csv.bz2", package = "BuildinganRPackageLCP")
+system.file("extdata", "accident_2014.csv.bz2", package = "BuildinganRPackageLCP")
+system.file("extdata", "accident_2015.csv.bz2", package = "BuildinganRPackageLCP")
 ```
 
 
 # Description
 
-This is the vignette for the R package BuilidinganRPackageLCP written in R Markdown as a html_vignette document.  The R package BuilidinganRPackageLCP implements five useful functions to process and analyze data from the **Fatality Analysis Reporting System (FARS)**. The functions are the following:
+This is the vignette for the R package BuildinganRPackageLCP written in R Markdown as a html_vignette document.  The R package BuildinganRPackageLCP implements five useful functions to process and analyze data from the **Fatality Analysis Reporting System (FARS)**. The functions are the following:
 
 1. *fars_read*: A read data file function.
 2. *make_filename*: A simple function to create the filename of accident data for a given year.
@@ -49,19 +49,19 @@ This is the vignette for the R package BuilidinganRPackageLCP written in R Markd
 
 From **CRAN**
 ```{r Installation_1, eval=FALSE}
-install.packages('BuilidinganRPackageLCP')
+install.packages('BuildinganRPackageLCP')
 ```
 
 From **GITHUB**
 
 ```{r Installation2, eval=FALSE}
-devtools::install_github("Darwinita/BuilidinganRPackageLCP")
+devtools::install_github("Darwinita/BuildinganRPackageLCP")
 ```
 
 **LOAD** using
 
 ```{r Installation3}
-library(BuilidinganRPackageLCP)
+library(BuildinganRPackageLCP)
 ```
 
 
@@ -100,7 +100,7 @@ state.num, Is a numeric corresponding to the user provided state number.
 year, A numeric corresponding to the user provided year.
 
 # Details
-The R package BuilidinganRPackageLCP has the following main goals:
+The R package BuildinganRPackageLCP has the following main goals:
 
 * Manage FRS data file names from user provided year(s).
 
@@ -115,8 +115,8 @@ The R package BuilidinganRPackageLCP has the following main goals:
 
 ```{r Example1, warnings = FALSE, message = FALSE}
 #Create a dataframe from data file accident_2015.csv.bz2.
-filename <- system.file("extdata", "accident_2015.csv.bz2", package = "BuilidinganRPackageLCP")
-dataframe2015 <- BuilidinganRPackageLCP::fars_read(filename)
+filename <- system.file("extdata", "accident_2015.csv.bz2", package = "BuildinganRPackageLCP")
+dataframe2015 <- BuildinganRPackageLCP::fars_read(filename)
 class(dataframe2015)
 summary(dataframe2015)
 ```
@@ -125,14 +125,14 @@ summary(dataframe2015)
 
 ```{r Example2, warnings = FALSE, message = FALSE}
 #create the filename of FARS accident data for year 2013.
-BuilidinganRPackageLCP::make_filename(2013)
+BuildinganRPackageLCP::make_filename(2013)
 ```
 
 ### Example 3
 
 ```{r Example3, warnings = FALSE, message = FALSE}
 #Extract the monthly FARS data from years 2013, 2014 and 2015.
-fars_read_years2013_2015 <- BuilidinganRPackageLCP::fars_read_years(c(2013,2014,2015))
+fars_read_years2013_2015 <- BuildinganRPackageLCP::fars_read_years(c(2013,2014,2015))
 class(fars_read_years2013_2015)
 str(fars_read_years2013_2015)
 ```
@@ -141,7 +141,7 @@ str(fars_read_years2013_2015)
 
 ```{r Example4, warnings = FALSE, message = FALSE}
 #Summarize FARS data for years 2013, 2014 and 2015.
-DataSummary2013_2015 <- BuilidinganRPackageLCP::fars_summarize_years(c(2013,2014,2015))
+DataSummary2013_2015 <- BuildinganRPackageLCP::fars_summarize_years(c(2013,2014,2015))
 class(DataSummary2013_2015)
 str(DataSummary2013_2015)
 DataSummary2013_2015
@@ -151,7 +151,7 @@ DataSummary2013_2015
 
 ```{r Example5, warnings = FALSE, message = FALSE}
 #Map FARS data for state nu. 28 in 2015.
-BuilidinganRPackageLCP::fars_map_state(28,2015)
+BuildinganRPackageLCP::fars_map_state(28,2015)
 ```
 
 **Figure 1**: FARS data for state number 28 in 2015.
