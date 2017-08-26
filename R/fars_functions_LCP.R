@@ -15,6 +15,7 @@
 #'   an R data frame with the data contained in filename. Otherwise it stops.
 #'
 #' @importFrom readr read_csv
+#' @importFrom dplyr tbl_df
 #'
 #' @examples
 #' fars_read("accident_2015.csv.bz2")
