@@ -21,6 +21,8 @@ library(tidyr)
 library(magrittr)
 # install.packages('graphics')
 library(graphics)
+# install.packages('stats')
+library(stats)
 # install.packages('maps')
 library(maps)
 ```
