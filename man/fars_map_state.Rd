@@ -2,8 +2,7 @@
 % Please edit documentation in R/fars_functions_LCP.R
 \name{fars_map_state}
 \alias{fars_map_state}
-\title{A function to create a map of FARS events and points a plot for a given a
-state number and year.}
+\title{fars_map_state}
 \usage{
 fars_map_state(state.num, year)
 }
@@ -17,6 +16,9 @@ number.}
 a map of FARS events per state and year.
 }
 \description{
+A function to create a map of FARS events and points a plot for a given a
+state number and year.
+
 \code{fars_map_state} This function uses an user provided state number and
 year to create a map of FARS events and their corresponding points plot.
 }
