@@ -2,7 +2,7 @@
 % Please edit documentation in R/fars_functions_LCP.R
 \name{fars_read}
 \alias{fars_read}
-\title{A read data file function.}
+\title{fars_read}
 \usage{
 fars_read(filename)
 }
@@ -15,6 +15,8 @@ If a file name is provided this functions returns a dplyr version of
   an R data frame with the data contained in filename. Otherwise it stops.
 }
 \description{
+A read data file function.
+
 \code{fars_read} This function reads a filename from the Fatality Analysis
 Reporting System (FARS) into a dplyr version of an R data frame. It stops if
 the file does not exist.

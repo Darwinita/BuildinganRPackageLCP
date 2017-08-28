@@ -6,25 +6,23 @@ output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{"my-vignette"}
   %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
 ---
 
 Load required libraries...
 ```{r setup_1, echo=FALSE, warnings = FALSE, message = FALSE}
-#install.packages('readr')
-library(readr)
-# install.packages('magrittr')
-library(magrittr)
-# install.packages('dplyr')
-library(dplyr)
-# install.packages('tidyr')
-library(tidyr)
-# install.packages('graphics')
-library(graphics)
-# install.packages('stats')
-library(stats)
-# install.packages('maps')
-library(maps)
+# #install.packages('readr')
+# library(readr)
+# # install.packages('dplyr')
+# library(dplyr)
+# # install.packages('stats')
+# library(stats)
+# # install.packages('tidyr')
+# library(tidyr)
+# # install.packages('graphics')
+# library(graphics)
+# # install.packages('maps')
+# library(maps)
 ```
 
 The package includes the FARS dataset files from years 2013 to 2015. To access the raw data files the user can use the following line of code:
@@ -46,6 +44,14 @@ This is the vignette for the R package BuildinganRPackageLCP written in R Markdo
 4. *fars_summarize_years*: A function to summarize FARS events per month and year.
 5. *fars_map_state*: A function to create a map of FARS events and points plota for a given a state number and year.
 
+# Details
+The R package BuildinganRPackageLCP has the following main goals:
+
+* Manage FRS data file names from user provided year(s).
+
+* Extract and summarize FARS data from user provided year(s).
+
+* Map FARS data per state and user provided year.
 
 # Installation
 
@@ -65,7 +71,6 @@ devtools::install_github("Darwinita/BuildinganRPackageLCP")
 ```{r Installation3}
 library(BuildinganRPackageLCP)
 ```
-
 
 
 # Usage
@@ -101,15 +106,6 @@ fars_map_state(state.num, year)
 state.num, Is a numeric corresponding to the user provided state number.
 year, A numeric corresponding to the user provided year.
 
-# Details
-The R package BuildinganRPackageLCP has the following main goals:
-
-* Manage FRS data file names from user provided year(s).
-
-* Extract and summarize FARS data from user provided year(s).
-
-* Map FARS data per state and user provided year.
-
 
 # Examples
 
@@ -117,6 +113,7 @@ The R package BuildinganRPackageLCP has the following main goals:
 
 ```{r Example1, warnings = FALSE, message = FALSE}
 #Create a dataframe from data file accident_2015.csv.bz2.
+library(dplyr)
 filename <- system.file("extdata", "accident_2015.csv.bz2", package = "BuildinganRPackageLCP")
 dataframe2015 <- BuildinganRPackageLCP::fars_read(filename)
 class(dataframe2015)
@@ -134,6 +131,7 @@ BuildinganRPackageLCP::make_filename(2013)
 
 ```{r Example3, warnings = FALSE, message = FALSE}
 #Extract the monthly FARS data from years 2013, 2014 and 2015.
+library(dplyr)
 fars_read_years2013_2015 <- BuildinganRPackageLCP::fars_read_years(c(2013,2014,2015))
 class(fars_read_years2013_2015)
 str(fars_read_years2013_2015)
@@ -143,6 +141,9 @@ str(fars_read_years2013_2015)
 
 ```{r Example4, warnings = FALSE, message = FALSE}
 #Summarize FARS data for years 2013, 2014 and 2015.
+library(dplyr)
+library(tidyr)
+setwd(system.file("extdata", package = "BuildinganRPackageLCP"))
 DataSummary2013_2015 <- BuildinganRPackageLCP::fars_summarize_years(c(2013,2014,2015))
 class(DataSummary2013_2015)
 str(DataSummary2013_2015)
@@ -153,6 +154,10 @@ DataSummary2013_2015
 
 ```{r Example5, warnings = FALSE, message = FALSE}
 #Map FARS data for state nu. 28 in 2015.
+library(dplyr)
+library(graphics)
+library(maps)
+setwd(system.file("extdata", package = "BuildinganRPackageLCP"))
 BuildinganRPackageLCP::fars_map_state(28,2015)
 ```
 

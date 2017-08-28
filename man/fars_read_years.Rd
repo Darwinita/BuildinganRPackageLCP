@@ -2,7 +2,7 @@
 % Please edit documentation in R/fars_functions_LCP.R
 \name{fars_read_years}
 \alias{fars_read_years}
-\title{A function to extraxct monthly data from a given set of years.}
+\title{fars_read_years}
 \usage{
 fars_read_years(years)
 }
@@ -15,6 +15,8 @@ A list of subsetted dataframes in dplyr format with the monthly data from
   every year included in years.
 }
 \description{
+A function to extraxct monthly data from a given set of years.
+
 \code{fars_read_years} This function uses an user provided series of years to
 extract their FARS monthly data
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/fars_functions_LCP.R
 \name{fars_summarize_years}
 \alias{fars_summarize_years}
-\title{A function to summarize FARS events per month and year.}
+\title{fars_summarize_years}
 \usage{
 fars_summarize_years(years)
 }
@@ -15,6 +15,8 @@ A dataframe with the summary of fars events per month for every given
   year.
 }
 \description{
+A function to summarize FARS events per month and year.
+
 \code{fars_summarize_years} This function uses an user provided series of
 years to create a summary of the total number of FARS events per month and
 year.

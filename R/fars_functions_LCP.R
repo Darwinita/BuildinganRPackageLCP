@@ -1,4 +1,8 @@
-#' A read data file function.
+#' @name fars_read
+#'
+#' @title fars_read
+#'
+#' @description A read data file function.
 #'
 #' \code{fars_read} This function reads a filename from the Fatality Analysis
 #' Reporting System (FARS) into a dplyr version of an R data frame. It stops if
@@ -34,7 +38,11 @@ fars_read <- function(filename) {
         dplyr::tbl_df(data)
 }
 
-#' A simple function to create the filename of accident data for a given year.
+#' @name make_filename
+#'
+#' @title make_filename
+#'
+#' @description A simple function to create the filename of accident data for a given year.
 #'
 #' \code{make_filename} This function takes an user provided year to generate a
 #' filename from FARS.
@@ -55,12 +63,17 @@ fars_read <- function(filename) {
 #' @export
 make_filename <- function(year) {
         year <- as.integer(year)
-        datafile <- sprintf("accident_%d.csv.bz2", year)
-        system.file("extdata", datafile, package = "BuildinganRPackage")
-
+        system.file("extdata", sprintf("accident_%d.csv.bz2", year), package ="BuildinganRPackageLCP")
+        # sprintf("accident_%d.csv.bz2", year)
+        #filename <- sprintf("accident_%d.csv.bz2", year)
+        #system.file("extdata", filename, package="BuildinganRPackageLCP")
 }
 
-#' A function to extraxct monthly data from a given set of years.
+#' @name fars_read_years
+#'
+#' @title fars_read_years
+#'
+#' @description A function to extraxct monthly data from a given set of years.
 #'
 #' \code{fars_read_years} This function uses an user provided series of years to
 #' extract their FARS monthly data
@@ -84,7 +97,7 @@ make_filename <- function(year) {
 #'
 #' @importFrom dplyr mutate
 #' @importFrom dplyr select
-#' @importFrom magrittr "%>%"
+#' @importFrom dplyr "%>%"
 #'
 #' @examples
 #' fars_read_years(c(2013,2014,2015))
@@ -96,11 +109,12 @@ make_filename <- function(year) {
 #' @export
 fars_read_years <- function(years) {
         lapply(years, function(year) {
-                file <- make_filename(year)
+                filename <- make_filename(year)
+                #print(filename)
                 tryCatch({
-                        dat <- fars_read(file)
-                        dplyr::mutate(dat, year = year) %>%
-                                dplyr::select(MONTH, year)
+                        dat <- fars_read(filename)
+                        dplyr::mutate(dat, year = ~year) %>%
+                                dplyr::select("MONTH", "year")
                 }, error = function(e) {
                         warning("invalid year: ", year)
                         return(NULL)
@@ -108,7 +122,11 @@ fars_read_years <- function(years) {
         })
 }
 
-#' A function to summarize FARS events per month and year.
+#' @name fars_summarize_years
+#'
+#' @title fars_summarize_years
+#'
+#' @description A function to summarize FARS events per month and year.
 #'
 #' \code{fars_summarize_years} This function uses an user provided series of
 #' years to create a summary of the total number of FARS events per month and
@@ -139,12 +157,16 @@ fars_read_years <- function(years) {
 fars_summarize_years <- function(years) {
         dat_list <- fars_read_years(years)
         dplyr::bind_rows(dat_list) %>%
-                dplyr::group_by(year, MONTH) %>%
-                dplyr::summarize(n = n()) %>%
-                tidyr::spread(year, n)
+                dplyr::group_by("year", "MONTH") %>%
+                dplyr::summarize(n = ~n()) %>%
+                tidyr::spread("year", "n")
 }
 
-#' A function to create a map of FARS events and points a plot for a given a
+#' @name fars_map_state
+#'
+#' @title fars_map_state
+#'
+#' @description A function to create a map of FARS events and points a plot for a given a
 #' state number and year.
 #'
 #' \code{fars_map_state} This function uses an user provided state number and
@@ -186,7 +208,7 @@ fars_map_state <- function(state.num, year) {
 
         if(!(state.num %in% unique(data$STATE)))
                 stop("invalid STATE number: ", state.num)
-        data.sub <- dplyr::filter(data, STATE == state.num)
+        data.sub <- dplyr::filter(data, ~STATE == state.num)
         if(nrow(data.sub) == 0L) {
                 message("no accidents to plot")
                 return(invisible(NULL))

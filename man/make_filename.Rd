@@ -2,7 +2,7 @@
 % Please edit documentation in R/fars_functions_LCP.R
 \name{make_filename}
 \alias{make_filename}
-\title{A simple function to create the filename of accident data for a given year.}
+\title{make_filename}
 \usage{
 make_filename(year)
 }
@@ -14,6 +14,8 @@ A character string corrresponding to the full file name with the
   format. accident_year.csv.bz2.
 }
 \description{
+A simple function to create the filename of accident data for a given year.
+
 \code{make_filename} This function takes an user provided year to generate a
 filename from FARS.
 }

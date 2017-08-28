@@ -1,3 +1,4 @@
 library(testthat)
+library(BuildinganRPackageLCP)
 
-test_check("BuilidinganRPackageLCP")
+test_check("BuildinganRPackageLCP")
